@@ -1,0 +1,226 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Configuraciones base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  /* Mejorar la legibilidad del texto */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+  }
+}
+
+/* Componentes personalizados para botones */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 font-semibold text-white transition-all duration-300 transform rounded-lg shadow-lg bg-primary hover:bg-dark hover:scale-105 hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 font-semibold text-white transition-all duration-300 transform rounded-lg shadow-lg bg-secondary hover:bg-green-600 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .btn-outline {
+    @apply px-6 py-3 font-semibold transition-all duration-300 border-2 rounded-lg border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .btn-accent {
+    @apply px-4 py-2 font-semibold text-white transition-colors duration-200 rounded-lg bg-accent hover:bg-yellow-500;
+  }
+  
+  /* Card personalizada */
+  .card {
+    @apply transition-shadow duration-300 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl;
+  }
+  
+  /* Gradientes personalizados */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary to-dark;
+  }
+  
+  .gradient-success {
+    @apply bg-gradient-to-r from-secondary to-green-600;
+  }
+  
+  /* Texto con gradiente */
+  .text-gradient {
+    @apply text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text;
+  }
+  
+  /* Gradiente animado para badges */
+  .bg-gradient-animated {
+    background: linear-gradient(-45deg, #2563eb, #10b981, #f59e0b, #2563eb);
+    background-size: 400% 400%;
+    animation: gradient-shift 3s ease infinite;
+  }
+}
+
+/* Utilidades adicionales */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  /* Animación de gradiente para badges */
+  .animate-gradient-x {
+    animation: gradient-x 3s ease infinite;
+  }
+  
+  .bg-size-200 {
+    background-size: 200% 200%;
+  }
+  
+  /* Sombras personalizadas */
+  .shadow-primary {
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3);
+  }
+  
+  .shadow-secondary {
+    box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+  }
+  
+  .shadow-accent {
+    box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.3);
+  }
+  
+  /* Efectos de glow para badges y botones */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+  }
+  
+  .glow-secondary {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  }
+  
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+  }
+}
+
+/* Animaciones personalizadas básicas */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Transiciones suaves para modo oscuro (preparado para futuro) */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efectos de ripple para botones - CONSERVADOS */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple-effect:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #2563eb, #10b981);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #1d4ed8, #059669);
+}
+
+/* Efectos de blur para glassmorphism */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Transiciones suaves para modo oscuro (preparado para futuro) */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

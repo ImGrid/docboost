@@ -1,0 +1,115 @@
+# ===== NETLIFY TOML - DOCBOOST LANDING PAGE =====
+# Optimized for Free Plan (100GB bandwidth, 300 build minutes)
+
+[build]
+  # ✅ Build command
+  command = "npm run build"
+  
+  # ✅ Publish directory (Vite default)
+  publish = "dist"
+  
+  # ✅ Base directory (project root)
+  base = "."
+
+# ===== BUILD ENVIRONMENT =====
+[build.environment]
+  # ✅ Node.js version (latest stable)
+  NODE_VERSION = "20"
+  
+  # ✅ NPM version
+  NPM_VERSION = "10"
+
+# ===== REDIRECTS FOR SPA =====
+[[redirects]]
+  # ✅ Catch-all redirect for React Router (if needed later)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+  # ✅ Only for HTML requests (not assets)
+  conditions = {Role = ["!asset"]}
+
+# ===== HEADERS FOR PERFORMANCE & SECURITY =====
+[[headers]]
+  # ✅ Apply to all files
+  for = "/*"
+  
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Performance headers
+    X-DNS-Prefetch-Control = "on"
+
+# ===== STATIC ASSETS CACHING =====
+[[headers]]
+  # ✅ Cache static assets for 1 year
+  for = "/assets/*"
+  
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # ✅ Cache images for 30 days
+  for = "/*.{jpg,jpeg,png,webp,svg,ico}"
+  
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  # ✅ Don't cache HTML (for updates)
+  for = "/*.html"
+  
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ===== ERROR PAGES =====
+[[redirects]]
+  # ✅ 404 redirect to home (simple landing page)
+  from = "/404"
+  to = "/"
+  status = 301
+
+# ===== BUILD OPTIMIZATION =====
+[build.processing]
+  # ✅ Skip processing (Vite handles optimization)
+  skip_processing = false
+
+[build.processing.css]
+  # ✅ Let Vite handle CSS
+  bundle = false
+  minify = false
+
+[build.processing.js]
+  # ✅ Let Vite handle JS  
+  bundle = false
+  minify = false
+
+[build.processing.html]
+  # ✅ Basic HTML optimization
+  pretty_urls = true
+
+# ===== FORM HANDLING (Basic - Free Plan) =====
+# Note: Free plan includes 100 form submissions/month
+# Commented out - add only if you need contact forms later
+# 
+# [[forms]]
+#   name = "contact"
+#   # Basic spam protection
+#   honeypot = "bot-field"
+
+# ===== CONTEXT-SPECIFIC SETTINGS =====
+[context.production]
+  # ✅ Production environment
+  command = "npm run build"
+
+[context.deploy-preview]
+  # ✅ Deploy previews (for testing)
+  command = "npm run build"
+
+[context.branch-deploy]
+  # ✅ Branch deploys
+  command = "npm run build"
