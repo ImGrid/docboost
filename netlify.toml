@@ -19,16 +19,6 @@
   # ✅ NPM version
   NPM_VERSION = "10"
 
-# ===== REDIRECTS FOR SPA =====
-[[redirects]]
-  # ✅ Catch-all redirect for React Router (if needed later)
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  
-  # ✅ Only for HTML requests (not assets)
-  conditions = {Role = ["!asset"]}
-
 # ===== HEADERS FOR PERFORMANCE & SECURITY =====
 [[headers]]
   # ✅ Apply to all files
@@ -65,41 +55,6 @@
   
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-
-# ===== ERROR PAGES =====
-[[redirects]]
-  # ✅ 404 redirect to home (simple landing page)
-  from = "/404"
-  to = "/"
-  status = 301
-
-# ===== BUILD OPTIMIZATION =====
-[build.processing]
-  # ✅ Skip processing (Vite handles optimization)
-  skip_processing = false
-
-[build.processing.css]
-  # ✅ Let Vite handle CSS
-  bundle = false
-  minify = false
-
-[build.processing.js]
-  # ✅ Let Vite handle JS  
-  bundle = false
-  minify = false
-
-[build.processing.html]
-  # ✅ Basic HTML optimization
-  pretty_urls = true
-
-# ===== FORM HANDLING (Basic - Free Plan) =====
-# Note: Free plan includes 100 form submissions/month
-# Commented out - add only if you need contact forms later
-# 
-# [[forms]]
-#   name = "contact"
-#   # Basic spam protection
-#   honeypot = "bot-field"
 
 # ===== CONTEXT-SPECIFIC SETTINGS =====
 [context.production]
