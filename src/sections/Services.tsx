@@ -33,9 +33,16 @@ const Services: React.FC = () => {
             Servicios por <span className="text-gradient">Semestre</span>
           </h2>
           <p className="max-w-3xl mx-auto text-xl leading-relaxed text-gray-600">
-            Ofrecemos servicios modulares adaptados a cada etapa de tu tesis. 
+            Ofrecemos servicios modulares adaptados a cada etapa de tu tesis.
             Desde la documentación del perfil hasta la implementación completa.
           </p>
+
+          {/* Disclaimer de precios referenciales */}
+          <div className="max-w-4xl p-4 mx-auto mt-8 text-center bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-sm text-gray-700">
+              <strong>Nota:</strong> Los precios mostrados son referenciales. El costo final se determina según la complejidad y alcance específico de tu proyecto.
+            </p>
+          </div>
         </div>
 
         {/* 9° SEMESTRE */}
@@ -55,7 +62,7 @@ const Services: React.FC = () => {
                 key={service.id}
                 title={service.title}
                 description={service.description}
-                price={`${service.priceRange.min} - ${service.priceRange.max}`}
+                price={`~${service.price.toLocaleString('es-BO')}`}
                 features={service.features}
                 highlighted={service.highlighted}
               >
@@ -88,7 +95,7 @@ const Services: React.FC = () => {
                 key={service.id}
                 title={service.title}
                 description={service.description}
-                price={`${service.priceRange.min} - ${service.priceRange.max}`}
+                price={`~${service.price.toLocaleString('es-BO')}`}
                 features={service.features}
                 highlighted={service.highlighted}
               >

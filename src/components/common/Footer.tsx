@@ -1,28 +1,26 @@
-import React from 'react';
-import { COMPANY_INFO, NAVIGATION_SECTIONS } from '../../utils/constants';
-import { CONTACT_DATA } from '../../data/contact';
+import React from "react";
+import { COMPANY_INFO, NAVIGATION_SECTIONS } from "../../utils/constants";
+import { CONTACT_DATA } from "../../data/contact";
 // ✅ Iconos profesionales de Lucide React
-import { 
-  FileText,      // Perfil de Trabajo de Grado
-  Code2,         // Desarrollo de Proyectos  
+import {
+  FileText, // Perfil de Trabajo de Grado
+  Code2, // Desarrollo de Proyectos
   GraduationCap, // Documentación Técnica
-  Rocket,        // Puesta en Producción
-  Phone          // Contacto WhatsApp
-} from 'lucide-react';
+  Rocket, // Puesta en Producción
+  Phone, // Contacto WhatsApp
+} from "lucide-react";
 
 const Footer: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="relative overflow-hidden text-white bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -33,10 +31,8 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="relative px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        
         {/* Contenido principal - Grid optimizado */}
         <div className="grid gap-8 lg:grid-cols-12 md:grid-cols-8">
-          
           {/* Logo y descripción - Más compacto */}
           <div className="lg:col-span-4 md:col-span-3">
             <div className="mb-4">
@@ -112,17 +108,12 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-medium text-white">WhatsApp</div>
-                  <div>+{CONTACT_DATA.countryCode} {CONTACT_DATA.phone}</div>
+                  <div>
+                    +{CONTACT_DATA.countryCode} {CONTACT_DATA.phone}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Copyright compacto */}
-        <div className="flex flex-col items-center justify-between pt-6 mt-6 border-t border-gray-700 md:flex-row">
-          <div className="mb-4 text-sm text-gray-400 md:mb-0">
-            © {currentYear} {COMPANY_INFO.name}. Todos los derechos reservados.
           </div>
         </div>
       </div>

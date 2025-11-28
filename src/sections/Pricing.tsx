@@ -22,7 +22,7 @@ const Pricing: React.FC = () => {
     }
   };
 
-  const formatPrice = (min: number, max: number) => `${min} - ${max}`;
+  const formatPrice = (price: number) => `~${price.toLocaleString('es-BO')}`;
 
   const getServiceIcon = (iconName: string) => {
     const iconMap: Record<string, React.ReactNode> = {
@@ -50,6 +50,13 @@ const Pricing: React.FC = () => {
           <p className="max-w-3xl mx-auto text-xl leading-relaxed text-gray-600">
             Ahorra hasta <strong>20% comprando paquetes completos</strong>. 
             Precios transparentes sin sorpresas.
+          </p>
+        </div>
+
+        {/* Disclaimer de precios referenciales */}
+        <div className="max-w-4xl p-4 mx-auto mb-8 text-center bg-blue-50 border border-blue-200 rounded-lg animate-fade-in">
+          <p className="text-sm text-gray-700">
+            <strong>Nota:</strong> Los precios mostrados son referenciales. El costo final se determina según la complejidad y alcance específico de tu proyecto.
           </p>
         </div>
 
@@ -95,7 +102,7 @@ const Pricing: React.FC = () => {
                   
                   <div className="mt-4">
                     <span className="text-4xl font-bold text-primary">
-                      {formatPrice(pkg.priceRange.min, pkg.priceRange.max)}
+                      {formatPrice(pkg.price)}
                     </span>
                     <span className="ml-1 text-gray-500">Bs.</span>
                   </div>
@@ -120,7 +127,7 @@ const Pricing: React.FC = () => {
                   {pkg.originalPrice && (
                     <div className="mb-4 text-center">
                       <div className="text-sm text-gray-500 line-through">
-                        Precio individual: {formatPrice(pkg.originalPrice.min, pkg.originalPrice.max)} Bs.
+                        Precio individual: {formatPrice(pkg.originalPrice)} Bs.
                       </div>
                       <div className="flex justify-center mt-2 space-x-2">
                         {pkg.highlighted && <PopularBadge />}
@@ -159,7 +166,7 @@ const Pricing: React.FC = () => {
                   {getServiceIcon(service.icon)}
                 </div>
                 <h4 className="mb-2 font-bold text-gray-900">{service.title}</h4>
-                <div className="mb-2 text-2xl font-bold text-primary">{service.price}</div>
+                <div className="mb-2 text-2xl font-bold text-primary">{formatPrice(service.price)} Bs.</div>
                 <p className="text-sm text-gray-600">{service.description}</p>
               </div>
             ))}

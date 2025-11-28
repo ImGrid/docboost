@@ -2,10 +2,7 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  priceRange: {
-    min: number;
-    max: number;
-  };
+  price: number;
   features: string[];
   complexity: 'Media' | 'Alta' | 'Media-Alta' | 'Muy Alta';
   risk: 'Bajo' | 'Medio' | 'Alto (rechazo)';
@@ -20,7 +17,7 @@ export const NINTH_SEMESTER_SERVICES: Service[] = [
     id: 'perfil-documentacion',
     title: 'Documentación del Perfil',
     description: 'Elaboración completa del perfil de trabajo de grado con todos los componentes académicos requeridos',
-    priceRange: { min: 800, max: 1200 },
+    price: 1600,
     features: [
       'Planteamiento del problema',
       'Justificación y objetivos',
@@ -40,7 +37,7 @@ export const NINTH_SEMESTER_SERVICES: Service[] = [
     id: 'avance-proyecto',
     title: 'Avance del Proyecto',
     description: 'Desarrollo del prototipo inicial funcional que demuestre las capacidades principales del sistema',
-    priceRange: { min: 1500, max: 2500 },
+    price: 3000,
     features: [
       'Prototipo funcional (30-40%)',
       'Diseño de base de datos básico',
@@ -65,7 +62,7 @@ export const TENTH_SEMESTER_SERVICES: Service[] = [
     id: 'documentacion-marco',
     title: 'Documentación del Marco Práctico',
     description: 'Documentación completa del desarrollo aplicando metodología, pruebas y validaciones del sistema',
-    priceRange: { min: 1200, max: 1800 },
+    price: 2500,
     features: [
       'Metodología de desarrollo aplicada',
       'Pruebas y validaciones del sistema',
@@ -86,7 +83,7 @@ export const TENTH_SEMESTER_SERVICES: Service[] = [
     id: 'proyecto-final',
     title: 'Proyecto Final + Producción',
     description: 'Desarrollo completo del sistema con implementación en producción y entrega lista para usar',
-    priceRange: { min: 2500, max: 4000 },
+    price: 5200,
     features: [
       'Desarrollo completo del sistema',
       'Implementación de todas las funcionalidades',
