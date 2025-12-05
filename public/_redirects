@@ -7,6 +7,10 @@
 # 2. Forzar HTTPS (Netlify lo hace automáticamente, pero esto es por si acaso)
 http://docboostnet.netlify.app/*  https://docboostnet.netlify.app/:splat  301!
 
-# 3. SPA routing - Redirigir todas las rutas a index.html (React Router)
+# 3. Excepciones para archivos estáticos (ANTES del catch-all)
+/robots.txt   /robots.txt   200
+/sitemap.xml  /sitemap.xml  200
+
+# 4. SPA routing - Redirigir todas las rutas a index.html (React Router)
 # Esto DEBE estar al final del archivo
 /*  /index.html  200
