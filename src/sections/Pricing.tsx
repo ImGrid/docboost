@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { DiscountBadge, PopularBadge } from '../components/ui/Badge';
 import { PRICING_PACKAGES, ADDITIONAL_SERVICES_PRICING } from '../data/pricing';
@@ -43,27 +44,46 @@ const Pricing: React.FC = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         
         {/* Header de la sección */}
-        <div className="mb-16 text-center animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+          className="mb-16 text-center"
+        >
           <h2 className="mb-6 text-4xl font-bold text-gray-900">
             Paquetes con <span className="text-gradient">Descuentos</span>
           </h2>
           <p className="max-w-3xl mx-auto text-xl leading-relaxed text-gray-600">
-            Ahorra hasta <strong>20% comprando paquetes completos</strong>. 
+            Ahorra hasta <strong>20% comprando paquetes completos</strong>.
             Precios transparentes sin sorpresas.
           </p>
-        </div>
+        </motion.div>
 
         {/* Disclaimer de precios referenciales */}
-        <div className="max-w-4xl p-4 mx-auto mb-8 text-center bg-blue-50 border border-blue-200 rounded-lg animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.3 }}
+          className="max-w-4xl p-4 mx-auto mb-8 text-center bg-blue-50 border border-blue-200 rounded-lg"
+        >
           <p className="text-sm text-gray-700">
             <strong>Nota:</strong> Los precios mostrados son referenciales. El costo final se determina según la complejidad y alcance específico de tu proyecto.
           </p>
-        </div>
+        </motion.div>
 
         {/* Paquetes Principales - NUEVO DISEÑO CON ALINEACIÓN PERFECTA */}
-        <div className="grid gap-8 mb-16 lg:grid-cols-3 animate-slide-up">
-          {PRICING_PACKAGES.map((pkg) => (
-            <div key={pkg.id} className="flex h-full">
+        <div className="grid gap-8 mb-16 lg:grid-cols-3">
+          {PRICING_PACKAGES.map((pkg, index) => (
+            <motion.div
+              key={pkg.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="flex h-full"
+            >
               {/* Card con altura completa, flexbox Y TODOS LOS ESTILOS ORIGINALES */}
               <div className={`
                 relative w-full rounded-xl backdrop-blur-sm transition-all duration-300 ease-out
@@ -146,12 +166,18 @@ const Pricing: React.FC = () => {
                   </Button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Servicios Adicionales */}
-        <div className="p-8 mb-16 bg-white shadow-lg rounded-2xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+          className="p-8 mb-16 bg-white shadow-lg rounded-2xl"
+        >
           <div className="mb-8 text-center">
             <h3 className="mb-4 text-2xl font-bold text-gray-900">
               Servicios <span className="text-gradient">Adicionales</span>
@@ -160,21 +186,34 @@ const Pricing: React.FC = () => {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {ADDITIONAL_SERVICES_PRICING.map((service) => (
-              <div key={service.id} className="p-6 text-center transition-all duration-300 bg-gray-50 rounded-xl hover:bg-gray-100 hover:shadow-md">
+            {ADDITIONAL_SERVICES_PRICING.map((service, index) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="p-6 text-center transition-all duration-300 bg-gray-50 rounded-xl hover:bg-gray-100 hover:shadow-md"
+              >
                 <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-primary/10">
                   {getServiceIcon(service.icon)}
                 </div>
                 <h4 className="mb-2 font-bold text-gray-900">{service.title}</h4>
                 <div className="mb-2 text-2xl font-bold text-primary">{formatPrice(service.price)} Bs.</div>
                 <p className="text-sm text-gray-600">{service.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA Final */}
-        <div className="text-center animate-fade-in" style={{ animationDelay: '0.7s' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.4 }}
+          className="text-center"
+        >
           <div className="max-w-2xl p-8 mx-auto bg-white shadow-2xl rounded-2xl">
             <h3 className="mb-4 text-2xl font-bold text-gray-900">
               ¿Listo para comenzar tu <span className="text-gradient">tesis?</span>
@@ -200,7 +239,7 @@ const Pricing: React.FC = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

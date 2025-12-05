@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ServiceCard } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { NINTH_SEMESTER_SERVICES, TENTH_SEMESTER_SERVICES } from '../data/services';
@@ -28,7 +29,13 @@ const Services: React.FC = () => {
       <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         
         {/* Header de la sección */}
-        <div className="mb-16 text-center animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+          className="mb-16 text-center"
+        >
           <h2 className="mb-6 text-4xl font-bold text-gray-900">
             Servicios por <span className="text-gradient">Semestre</span>
           </h2>
@@ -43,7 +50,7 @@ const Services: React.FC = () => {
               <strong>Nota:</strong> Los precios mostrados son referenciales. El costo final se determina según la complejidad y alcance específico de tu proyecto.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* 9° SEMESTRE */}
         <div className="mb-20">
@@ -56,24 +63,31 @@ const Services: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 animate-slide-up">
-            {NINTH_SEMESTER_SERVICES.map((service) => (
-              <ServiceCard
+          <div className="grid gap-8 md:grid-cols-2">
+            {NINTH_SEMESTER_SERVICES.map((service, index) => (
+              <motion.div
                 key={service.id}
-                title={service.title}
-                description={service.description}
-                price={`~${service.price.toLocaleString('es-BO')}`}
-                features={service.features}
-                highlighted={service.highlighted}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                <Button
-                  variant={getButtonVariant(service.highlighted)}
-                  fullWidth
-                  onClick={() => scrollToSection('contacto')}
+                <ServiceCard
+                  title={service.title}
+                  description={service.description}
+                  price={`~${service.price.toLocaleString('es-BO')}`}
+                  features={service.features}
+                  highlighted={service.highlighted}
                 >
-                  Solicitar Cotización
-                </Button>
-              </ServiceCard>
+                  <Button
+                    variant={getButtonVariant(service.highlighted)}
+                    fullWidth
+                    onClick={() => scrollToSection('contacto')}
+                  >
+                    Solicitar Cotización
+                  </Button>
+                </ServiceCard>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -89,30 +103,43 @@ const Services: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            {TENTH_SEMESTER_SERVICES.map((service) => (
-              <ServiceCard
+          <div className="grid gap-8 md:grid-cols-2">
+            {TENTH_SEMESTER_SERVICES.map((service, index) => (
+              <motion.div
                 key={service.id}
-                title={service.title}
-                description={service.description}
-                price={`~${service.price.toLocaleString('es-BO')}`}
-                features={service.features}
-                highlighted={service.highlighted}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                <Button
-                  variant={getButtonVariant(service.highlighted)}
-                  fullWidth
-                  onClick={() => scrollToSection('contacto')}
+                <ServiceCard
+                  title={service.title}
+                  description={service.description}
+                  price={`~${service.price.toLocaleString('es-BO')}`}
+                  features={service.features}
+                  highlighted={service.highlighted}
                 >
-                  Solicitar Cotización
-                </Button>
-              </ServiceCard>
+                  <Button
+                    variant={getButtonVariant(service.highlighted)}
+                    fullWidth
+                    onClick={() => scrollToSection('contacto')}
+                  >
+                    Solicitar Cotización
+                  </Button>
+                </ServiceCard>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* CTA de servicios */}
-        <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.3 }}
+          className="text-center"
+        >
           <Button
             variant="primary"
             size="lg"
@@ -121,7 +148,7 @@ const Services: React.FC = () => {
           >
             Ver Paquetes con Descuento
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

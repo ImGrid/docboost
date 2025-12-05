@@ -1,0 +1,12 @@
+# Netlify _redirects - Configuración para prevenir contenido duplicado y SPA routing
+
+# 1. Redirigir subdomain de Netlify al dominio principal (prevención de contenido duplicado)
+# IMPORTANTE: Cuando tengas un dominio personalizado, descomenta estas líneas y cambia la URL:
+# https://docboostnet.netlify.app/*  https://tudominio.com/:splat  301!
+
+# 2. Forzar HTTPS (Netlify lo hace automáticamente, pero esto es por si acaso)
+http://docboostnet.netlify.app/*  https://docboostnet.netlify.app/:splat  301!
+
+# 3. SPA routing - Redirigir todas las rutas a index.html (React Router)
+# Esto DEBE estar al final del archivo
+/*  /index.html  200

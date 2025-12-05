@@ -1,0 +1,18 @@
+# robots.txt para DocBoost - Especialistas en Tesis
+# https://docboostnet.netlify.app
+
+# Permitir todos los bots
+User-agent: *
+Allow: /
+
+# Velocidad de rastreo (opcional, 1 solicitud cada 10 segundos)
+Crawl-delay: 10
+
+# Bloquear archivos innecesarios
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# Sitemap
+Sitemap: https://docboostnet.netlify.app/sitemap.xml

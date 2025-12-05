@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
@@ -11,11 +12,17 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 bg-gradient-to-br from-primary/5 via-white to-secondary/5">
+    <section id="contacto" className="py-20 bg-gradient-to-br from-gray-50 via-white to-light">
       <div className="max-w-4xl px-4 mx-auto text-center sm:px-6 lg:px-8">
         
         {/* Header de la sección */}
-        <div className="mb-16 animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.4 }}
+          className="mb-16"
+        >
           <Badge variant="gradient" glow className="mb-4">
             <Phone className="w-4 h-4 mr-1" />
             Contacto
@@ -26,10 +33,15 @@ const Contact: React.FC = () => {
           <p className="max-w-2xl mx-auto text-xl leading-relaxed text-gray-600">
             Contáctanos por WhatsApp y te ayudamos con tu proyecto de tesis
           </p>
-        </div>
+        </motion.div>
 
         {/* Tarjeta principal de contacto */}
-        <div className="animate-slide-up">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+        >
           <Card variant="highlighted" className="max-w-2xl mx-auto">
             <div className="p-12">
               
@@ -89,7 +101,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -81,11 +81,6 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div className={cardClasses} onClick={onClick}>
-      {/* Decoración de esquina para variante highlighted */}
-      {variant === 'highlighted' && (
-        <div className="absolute w-2 h-2 rounded-full top-3 right-3 bg-gradient-to-br from-primary to-secondary opacity-60" />
-      )}
-      
       {/* Header opcional */}
       {header && (
         <div className="relative z-10 px-6 py-4 border-b border-gray-100">

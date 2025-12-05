@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
@@ -168,7 +169,13 @@ const WhyChooseUs: React.FC = () => {
       <div className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         
         {/* Header de la sección */}
-        <div className="mb-16 text-center animate-fade-in">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+          className="mb-16 text-center"
+        >
           <Badge variant="gradient" glow className="mb-4">
             ⭐ ¿Por Qué DocBoost?
           </Badge>
@@ -176,10 +183,10 @@ const WhyChooseUs: React.FC = () => {
             La Mejor Opción para tu <span className="text-gradient">Tesis</span>
           </h2>
           <p className="max-w-3xl mx-auto text-xl leading-relaxed text-gray-600">
-            Somos especialistas en tesis de Ingeniería de Sistemas con resultados comprobados 
+            Somos especialistas en tesis de Ingeniería de Sistemas con resultados comprobados
             y un proceso transparente que garantiza tu éxito académico.
           </p>
-        </div>
+        </motion.div>
 
         {/* Estadísticas destacadas con mejor diseño */}
         <div className="grid grid-cols-2 gap-6 mb-20 lg:grid-cols-4 animate-slide-up">
@@ -213,22 +220,30 @@ const WhyChooseUs: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {advantages.map((advantage, index) => (
-              <Card key={index} variant="highlighted" hover>
-                <div className="p-6">
-                  {/* Icono en círculo con colores vibrantes mantenidos */}
-                  <div className={`w-16 h-16 ${advantage.bgColor} rounded-full flex items-center justify-center mb-4`}>
-                    <advantage.icon className={`w-8 h-8 ${advantage.color}`} />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <Card variant="highlighted" hover>
+                  <div className="p-6">
+                    {/* Icono en círculo con colores vibrantes mantenidos */}
+                    <div className={`w-16 h-16 ${advantage.bgColor} rounded-full flex items-center justify-center mb-4`}>
+                      <advantage.icon className={`w-8 h-8 ${advantage.color}`} />
+                    </div>
+                    <h4 className="mb-3 text-xl font-bold text-gray-900">
+                      {advantage.title}
+                    </h4>
+                    <p className="leading-relaxed text-gray-600">
+                      {advantage.description}
+                    </p>
                   </div>
-                  <h4 className="mb-3 text-xl font-bold text-gray-900">
-                    {advantage.title}
-                  </h4>
-                  <p className="leading-relaxed text-gray-600">
-                    {advantage.description}
-                  </p>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -244,44 +259,54 @@ const WhyChooseUs: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {process.map((step, index) => {
               const colors = getColorClasses(step.color);
               return (
-                <Card key={index} variant="highlighted" hover>
-                  <div className="p-6 text-center">
-                    {/* Estructura integrada: número prominente con icono pequeño */}
-                    <div className="relative mb-6">
-                      <div className={`w-20 h-20 ${colors.bg} rounded-full flex items-center justify-center mx-auto`}>
-                        <span className="text-2xl font-bold text-white">{step.step}</span>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  <Card variant="highlighted" hover>
+                    <div className="p-6 text-center">
+                      {/* Estructura integrada: número prominente */}
+                      <div className="relative mb-6">
+                        <div className={`w-20 h-20 ${colors.bg} rounded-full flex items-center justify-center mx-auto`}>
+                          <span className="text-2xl font-bold text-white">{step.step}</span>
+                        </div>
                       </div>
-                      {/* Icono pequeño en esquina superior derecha */}
-                      <div className={`absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md`}>
-                        <step.icon className={`w-4 h-4 ${colors.text}`} />
-                      </div>
+
+                      <h4 className="mb-3 text-lg font-bold text-gray-900">
+                        {step.title}
+                      </h4>
+                      <p className="text-sm leading-relaxed text-gray-600">
+                        {step.description}
+                      </p>
                     </div>
-                    
-                    <h4 className="mb-3 text-lg font-bold text-gray-900">
-                      {step.title}
-                    </h4>
-                    <p className="text-sm leading-relaxed text-gray-600">
-                      {step.description}
-                    </p>
-                  </div>
-                </Card>
+                  </Card>
+                </motion.div>
               );
             })}
           </div>
         </div>
         {/* CTA final corregido */}
-        <div className="text-center animate-fade-in" style={{ animationDelay: '0.8s' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.4 }}
+          className="text-center"
+        >
           <Card variant="highlighted">
             <div className="p-8 text-white bg-gradient-to-r from-primary to-secondary rounded-2xl">
               <h3 className="mb-4 text-2xl font-bold">
                 ¿Convencido? Comencemos tu proyecto hoy
               </h3>
               <p className="max-w-2xl mx-auto mb-6 text-blue-100">
-                Miles de estudiantes ya han logrado graduarse con nuestra ayuda. 
+                Miles de estudiantes ya han logrado graduarse con nuestra ayuda.
                 Tu éxito académico está a un clic de distancia.
               </p>
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -301,7 +326,7 @@ const WhyChooseUs: React.FC = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
